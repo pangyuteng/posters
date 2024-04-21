@@ -6,6 +6,66 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   </head>
   <body>
+    <script>
+      // Load the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/player_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+      // Replace the 'ytplayer' element with an <iframe> and
+      // YouTube player after the API code downloads.
+      var playerBaseline;
+      var playerFollowup;
+      function onYouTubePlayerAPIReady() {
+
+        playerBaseline = new YT.Player('ytplayer-baseline', {
+          height: '360',
+          width: '640',
+          videoId: 'DLPc-8Rk96I',
+          playlist: 'DLPc-8Rk96I',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChangeB
+          }
+        });
+
+        playerFollowup = new YT.Player('ytplayer-followup', {
+          height: '360',
+          width: '640',
+          videoId: 'VcSK2Tz-qWM',
+          playlist: 'VcSK2Tz-qWM',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChangeF
+          }
+        });
+
+      }
+
+      function onPlayerReady(event) {
+        event.target.setVolume(0);
+        event.target.playVideo();
+      }
+
+      function onPlayerStateChangeB(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerBaseline.seekTo(0);
+          playerBaseline.playVideo();
+        }
+      }
+      function onPlayerStateChangeF(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerFollowup.seekTo(0);
+          playerFollowup.playVideo();
+        }
+      }
+    </script>
+
     <h3>supplementary material for ats 2024, poster 11318</h3>
     <h1>Effects of Targeted Lobar Volume Reduction by Endobronchial Valve Treatment on Non-Targeted Lobar Volume and Pulmonary Blood Volume</h1>
     <h3>Pangyu Teng, Dallas K. Tada, Kalyani Vyapari, Ashley J. Banola, Esteban Diaz, George C. Foster, John M. Hoffman, Matthew S. Brown, Michael McNitt-Gray, Grace H. Kim, Jonathan Goldin
@@ -16,90 +76,91 @@
       </div>
     </div>
     <hr>
+    
     <div class="card" style="width: 180rem;">
       <div class="card-body">
-        <iframe width="1024" height="960" src="https://www.youtube.com/embed/DLPc-8Rk96I?si=m3v-O3L8oe6stugU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div id="ytplayer-baseline"></div>
         <h5 class="card-title">Complementary rendering video to Fig 3</h5>
         <p class="card-text">Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right). Targeted left lower lobe was not collapsed at follow-up.</p>
 
-        <table>
+        <table class="table table-striped">
           <tr>
-          <th>lobe</th>
-          <th>target</th>
-          <th>baseline lobar volume (cc)</th>
-          <th>followup lobar volume (cc)</th>
-          <th>lobar volume percent change</th>
-          <th>baseline TBV (cc)</th>
-          <th>followup TBV (cc)</th>
-          <th>TBV percent change from baseline</th>
-          <th>baseline BV5 (cc)</th>
-          <th>followup BV5 (cc)</th>
-          <th>BV5 percent change from baseline</th>
+          <th scope="col">lobe</th>
+          <th scope="col">target</th>
+          <th scope="col">baseline lobar volume (cc)</th>
+          <th scope="col">followup lobar volume (cc)</th>
+          <th scope="col">lobar volume percent change</th>
+          <th scope="col">baseline TBV (cc)</th>
+          <th scope="col">followup TBV (cc)</th>
+          <th scope="col">TBV percent change from baseline</th>
+          <th scope="col">baseline BV5 (cc)</th>
+          <th scope="col">followup BV5 (cc)</th>
+          <th scope="col">BV5 percent change from baseline</th>
           </tr>
           <tr>
-            <th>rul</th>
+            <th scope="row">rul</th>
             <td>no</td>
             <td>1621</td>
             <td>1679</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>3.58</td>
+            <td>86</td>
+            <td>60</td>
+            <td>-30.1</td>
+            <td>79</td>
+            <td>53</td>
+            <td>-32.6</td>
           </tr>
           <tr>
-            <th>rml</th>
+            <th scope="row">rml</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>743</td>
+            <td>772</td>
+            <td>3.9</td>
+            <td>35</td>
+            <td>30</td>
+            <td>-14.7</td>
+            <td>32</td>
+            <td>26</td>
+            <td>-17.9</td>
           </tr>
           <tr>
-            <th>rll</th>
+            <th scope="row">rll</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1521</td>
+            <td>1908</td>
+            <td>25.4</td>
+            <td>80</td>
+            <td>61</td>
+            <td>-24.4</td>
+            <td>74</td>
+            <td>52</td>
+            <td>-29.4</td>
           </tr>
           <tr>
-            <th>lul</th>
+            <th scope="row">lul</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1915</td>
+            <td>2050</td>
+            <td>7.01</td>
+            <td>95</td>
+            <td>65</td>
+            <td>-31.2</td>
+            <td>90</td>
+            <td>60</td>
+            <td>-33.8</td>
           </tr>
           <tr>
-            <th>lll</th>
+            <th scope="row">lll</th>
             <td>yes</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1929</td>
+            <td>2250</td>
+            <td>16.6</td>
+            <td>84</td>
+            <td>45</td>
+            <td>NA</td>
+            <td>79</td>
+            <td>40</td>
+            <td>NA</td>
           </tr>
         </table>
 
@@ -108,94 +169,94 @@
     <hr>
     <div class="card" style="width: 180rem;">
       <div class="card-body">
-        <iframe width="1024" height="960" src="https://www.youtube.com/embed/VcSK2Tz-qWM?si=4KjDMe0bwSnOVC9q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div id="ytplayer-followup"></div>
         <h5 class="card-title"> Complementary rendering video to Fig 4.</h5>
-        <p class="card-text">Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right). Targeted left upper lobe collapsed at follow-up.</p>
-
-        <table>
+        <p class="card-text">Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right). Targeted left upper lobe (LUL) collapsed at follow-up. LUL manually segmented in order to be rendered as a green blob at top of left lung.</p>
+        <table class="table table-striped">
           <tr>
-          <th>lobe</th>
-          <th>target</th>
-          <th>baseline lobar volume (cc)</th>
-          <th>followup lobar volume (cc)</th>
-          <th>lobar volume percent change</th>
-          <th>baseline TBV (cc)</th>
-          <th>followup TBV (cc)</th>
-          <th>TBV percent change from baseline</th>
-          <th>baseline BV5 (cc)</th>
-          <th>followup BV5 (cc)</th>
-          <th>BV5 percent change from baseline</th>
+          <th scope="col">lobe</th>
+          <th scope="col">target</th>
+          <th scope="col">baseline<br> lobar volume (cc)</th>
+          <th scope="col">followup<br> lobar volume (cc)</th>
+          <th scope="col">lobar volume percent change</th>
+          <th scope="col">baseline<br> TBV (cc)</th>
+          <th scope="col">followup<br> TBV (cc)</th>
+          <th scope="col">TBV percent change from baseline</th>
+          <th scope="col">baseline<br> BV5 (cc)</th>
+          <th scope="col">followup<br> BV5 (cc)</th>
+          <th scope="col">BV5 percent change from baseline</th>
           </tr>
           <tr>
-            <th>rul</th>
+            <th scope="row">rul</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1429</td>
+            <td>1434</td>
+            <td>0.3</td>
+            <td>49</td>
+            <td>46</td>
+            <td>-6.6</td>
+            <td>46</td>
+            <td>44</td>
+            <td>-5.0</td>
           </tr>
           <tr>
-            <th>rml</th>
+            <th scope="row">rml</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>251</td>
+            <td>262</td>
+            <td>4.5</td>
+            <td>10</td>
+            <td>10</td>
+            <td>0.2</td>
+            <td>10</td>
+            <td>10</td>
+            <td>0.2</td>
           </tr>
           <tr>
-            <th>rll</th>
+            <th scope="row">rll</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1627</td>
+            <td>1711</td>
+            <td>5.1</td>
+            <td>65</td>
+            <td>56</td>
+            <td>-13.7</td>
+            <td>59</td>
+            <td>53</td>
+            <td>-10.5</td>
           </tr>
           <tr>
-            <th>lul</th>
+            <th scope="row">lul</th>
             <td>no</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1587</td>
+            <td>1</td>
+            <td>-99.9</td>
+            <td>60</td>
+            <td>0</td>
+            <td>NA</td>
+            <td>56</td>
+            <td>0</td>
+            <td>NA</td>
           </tr>
           <tr>
-            <th>lll</th>
+            <th scope="row">lll</th>
             <td>yes</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
-            <td>2</td>
+            <td>1762</td>
+            <td>2612</td>
+            <td>48.2</td>
+            <td>75</td>
+            <td>91</td>
+            <td>22.1</td>
+            <td>63</td>
+            <td>85</td>
+            <td>34.5</td>
           </tr>
         </table>
 
       </div>
     </div>
     <hr>
+    
   </body>
 </html>
 
