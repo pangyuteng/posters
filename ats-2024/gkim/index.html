@@ -2,32 +2,107 @@
 <html>
   <head>
     <title>ATS 2024 GKIM</title>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div>
-        <h1>
-        GKIM poster title placeholder, Grace you need to create your own repo and youtube account<br>
-        </h1>
-    </div>
-
-    <div>
-        <h3>supplementary materials</h3>
-        TO-DELETE-10135-0162-010-2018-10-22 <br>
-        
-        <iframe width="560" height="315" src="https://youtube.com/embed/CGZbxBIdhdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <hr>
-        TO-DELETE-10135-0162-010-2019-12-02<br>
-        <iframe width="560" height="315" src="https://youtube.com/embed/0irtMvuPXZc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <hr>
-        TO-DELETE-10135-0162-010-2022-06-08<br>
-        <iframe width="560" height="315" src="https://youtube.com/embed/z2YYrnyjSG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <hr>
-
-    </div>    
+    <script>
+      // Load the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/player_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     
-  </body>
+      // Replace the 'ytplayer' element with an <iframe> and
+      // YouTube player after the API code downloads.
+      var playerVisit1;
+      var playerVisit2;
+      var playerVisit3;
+      function onYouTubePlayerAPIReady() {
 
+        playerVisit1 = new YT.Player('ytplayer-visit1', {
+          height: '360',
+          width: '300',
+          videoId: 'CGZbxBIdhdw',
+          playlist: 'CGZbxBIdhdw',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange1
+          }
+        });
+
+        playerVisit2 = new YT.Player('ytplayer-visit2', {
+          height: '360',
+          width: '300',
+          videoId: '0irtMvuPXZc',
+          playlist: '0irtMvuPXZc',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange2
+          }
+        });
+
+        playerVisit3 = new YT.Player('ytplayer-visit3', {
+          height: '360',
+          width: '300',
+          videoId: 'z2YYrnyjSG4',
+          playlist: 'z2YYrnyjSG4',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange3
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        event.target.setVolume(0);
+        event.target.playVideo();
+      }
+
+      function onPlayerStateChange1(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerVisit1.seekTo(0);
+          playerVisit1.playVideo();
+        }
+      }
+      function onPlayerStateChange2(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerVisit2.seekTo(0);
+          playerVisit2.playVideo();
+        }
+      }
+      function onPlayerStateChange3(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerVisit3.seekTo(0);
+          playerVisit3.playVideo();
+        }
+      }
+    </script>
+
+    <h5>supplementary material for ats 2024</h5>
+    <h1>Insert Poster Title ATS 2024 GKIM todo: create youtube and github accounts for video and html uploads</h1>
+    <h3>insert authors</h3>
+    <!--
+    <div class="card">
+      <div class="card-body">
+        <a href="./hohoho.pdf">download poster pdf here</a>
+      </div>
+    </div>
+    -->
+    <div class="card">
+      <div class="card-body">
+    <h5>supplementary material:</h5>
+    <div id="ytplayer-visit1"></div>
+    <div id="ytplayer-visit2"></div>
+    <div id="ytplayer-visit3"></div>
+    </div>
+  </div>
+  </body>
 </html>
 
