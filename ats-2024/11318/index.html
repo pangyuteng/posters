@@ -15,11 +15,26 @@
     
       // Replace the 'ytplayer' element with an <iframe> and
       // YouTube player after the API code downloads.
-      var playerBaseline;
-      var playerFollowup;
+      var playerFailedSag;
+      var playerFailedIso;
+      var playerSuccessSag;
+      var playerSuccessIso;
+      
       function onYouTubePlayerAPIReady() {
 
-        playerBaseline = new YT.Player('ytplayer-baseline', {
+        playerFailedSag = new YT.Player('ytplayer-failed-sag', {
+          height: '360',
+          width: '640',
+          videoId: 'QcPG_AMKPdI',
+          playlist: 'QcPG_AMKPdI',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+        
+        playerFailedIso = new YT.Player('ytplayer-failed-iso', {
           height: '360',
           width: '640',
           videoId: 'DLPc-8Rk96I',
@@ -28,11 +43,23 @@
           autoplay: 1,
           events: {
             'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChangeB
+            'onStateChange': onPlayerStateChangeFailedIso
           }
         });
 
-        playerFollowup = new YT.Player('ytplayer-followup', {
+        playerSuccessSag = new YT.Player('ytplayer-success-sag', {
+          height: '360',
+          width: '640',
+          videoId: 'cwr6PoHIfbk',
+          playlist: 'cwr6PoHIfbk',
+          loop: 1,
+          autoplay: 1,
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+        
+        playerSuccessIso = new YT.Player('ytplayer-success-iso', {
           height: '360',
           width: '640',
           videoId: 'VcSK2Tz-qWM',
@@ -41,7 +68,7 @@
           autoplay: 1,
           events: {
             'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChangeF
+            'onStateChange': onPlayerStateChangeSuccessIso
           }
         });
 
@@ -52,16 +79,16 @@
         event.target.playVideo();
       }
 
-      function onPlayerStateChangeB(event) {
+      function onPlayerStateChangeFailedIso(event) {
         if (event.data == YT.PlayerState.ENDED) {
-          playerBaseline.seekTo(0);
-          playerBaseline.playVideo();
+          playerFailedIso.seekTo(0);
+          playerFailedIso.playVideo();
         }
       }
-      function onPlayerStateChangeF(event) {
+      function onPlayerStateChangeSuccessIso(event) {
         if (event.data == YT.PlayerState.ENDED) {
-          playerFollowup.seekTo(0);
-          playerFollowup.playVideo();
+          playerSuccessIso.seekTo(0);
+          playerSuccessIso.playVideo();
         }
       }
     </script>
@@ -80,7 +107,8 @@
     <div class="card" style="width: 55rem;">
       <div class="card-body">
         <h5 class="card-title">Supplementary rendering video and table to Fig 3 in poster.</h5>
-        <div id="ytplayer-baseline"></div>
+        <div id="ytplayer-failed-sag"></div>
+        <div id="ytplayer-failed-iso"></div>
         <table class="table table-striped">
           <tr>
           <th scope="col">lobe</th>
@@ -162,15 +190,20 @@
           </tr>
         </table>
 
-        <p class="card-text">Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right). Targeted left lower lobe was not collapsed at follow-up, Lobar and vascular volume provided in table.  Vascular volume decreased in all 5 lobes.</p>
-
+        <p class="card-text">
+          Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right). 
+          Lobar and vascular volume provided in table.
+          Targeted left lower lobe was not collapsed at follow-up.
+          Vascular volume decreased in all 5 lobes.
+        </p>
       </div>
     </div>
 
     <div class="card" style="width: 55rem;">
       <div class="card-body">
         <h5 class="card-title">Supplementary rendering video and table to Fig 4 in poster.</h5>
-        <div id="ytplayer-followup"></div>
+        <div id="ytplayer-success-sag"></div>
+        <div id="ytplayer-success-iso"></div>
         <table class="table table-striped">
           <tr>
           <th scope="col">lobe</th>
@@ -251,8 +284,12 @@
             <td>34.5</td>
           </tr>
         </table>
-        <p class="card-text">Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right). Targeted left upper lobe (LUL) collapsed at follow-up. LUL manually segmented in order to be rendered as a green blob at top of left lung, Lobar and vascular volume provided in table. Lobar and vascular volume increased in LLL</p>
-
+        <p class="card-text">
+          Lobar and vascular segmentation at baseline (left) and 6-months post treatment (right).
+          Lobar and vascular volume provided in table.
+          Targeted left upper lobe (LUL) collapsed at follow-up. 
+          Lobar and vascular volume increased in LLL.
+          LUL at followup manually edited/segmented in order to be rendered as a green blob at top of left lung.</p>
 
       </div>
     </div>
