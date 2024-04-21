@@ -30,7 +30,8 @@
           loop: 1,
           autoplay: 1,
           events: {
-            'onReady': onPlayerReady
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChangeFailedSag
           }
         });
         
@@ -55,7 +56,8 @@
           loop: 1,
           autoplay: 1,
           events: {
-            'onReady': onPlayerReady
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChangeSuccessSag
           }
         });
         
@@ -91,6 +93,20 @@
           playerSuccessIso.playVideo();
         }
       }
+
+      function onPlayerStateChangeFailedSag(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerFailedSag.seekTo(0);
+          playerFailedSag.playVideo();
+        }
+      }
+      function onPlayerStateChangeSuccessSag(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          playerSuccessSag.seekTo(0);
+          playerSuccessSag.playVideo();
+        }
+      }
+
     </script>
 
     <h5>supplementary materials for ats 2024, invoice id-2024-S-11318-ATS</h5>
