@@ -23,6 +23,3 @@ Viewing Time: 11:30-1:15
 
 ```
 
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HlQ-ai1BHhg?si=53-j5JgSCrwNZ_3s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
